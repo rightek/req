@@ -7,7 +7,7 @@ Simple wrapper around XMLHttpRequest.
 ## Example
 
 ```
-import req from '@rightek/req';
+import req from '@rightek/req -S';
 
 req
     .withEndpoint('https://jsonplaceholder.typicode.com/todos')
