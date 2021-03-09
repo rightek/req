@@ -1,8 +1,25 @@
 {
-  "name": "@rightek/req",  
+  "name": "@rightek/req",
   "version": "1.0.0",
   "scripts": {},
   "dependencies": {},
   "devDependencies": {},
-  "license": "MIT"
+  "license": "MIT",
+  "description": "Simple wrapper around XMLHttpRequest.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rightek/req.git"
+  },
+  "keywords": [
+    "http",
+    "ajax",
+    "request",
+    "xhr"
+  ],
+  "author": "Mehdi Dehghani",
+  "bugs": {
+    "url": "https://github.com/rightek/req/issues"
+  },
+  "homepage": "https://github.com/rightek/req#readme"
 }
