@@ -1,4 +1,4 @@
-# Req
+# ℝ℈ℚ
 Simple wrapper around XMLHttpRequest. 
 
 ## Install
