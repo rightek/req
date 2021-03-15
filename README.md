@@ -2,12 +2,12 @@
 Simple wrapper around XMLHttpRequest. 
 
 ## Install
-`npm i @rightek/req`
+`npm i @rightek/req -S`
 
 ## Example
 
 ```
-import req from '@rightek/req -S';
+import req from '@rightek/req';
 
 req
     .withEndpoint('https://jsonplaceholder.typicode.com/todos')
