@@ -14,7 +14,7 @@ req
     .withData(1)
     .get()
     .then(res => {
-        console.error(res);
+        console.log(res);
     })
     .catch(e => {
         console.error(e);
