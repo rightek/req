@@ -9,7 +9,7 @@ Simple wrapper around XMLHttpRequest.
 ```
 import req from '@rightek/req';
 
-req
+req.init()
     .withEndpoint('https://jsonplaceholder.typicode.com/todos')
     .withData(1)
     .get()
@@ -22,6 +22,7 @@ req
 ```
 
 ## Api
+- `init`: Should be called before any of following methods
 - `withEndpoint(endpoint)`: e.g: `withEndpoint('https://jsonplaceholder.typicode.com/todos')`
 - `withData(data)`: e.g: `withData({username: 'john'})`
 - `withHeader(key, value)`: e.g: `withHeader('Content-Type', 'application/json')`

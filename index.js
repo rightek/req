@@ -14,6 +14,8 @@ const tryParseJSON = (s) => {
     return false;
 };
 
+const isValidUrl = input => !(typeof input === 'undefined' || input === null || input.length === 0);
+
 const send = (endpoint, method, data, headers, events, options) => {
     options = options || DEFAULT;
 
@@ -87,18 +89,10 @@ const send = (endpoint, method, data, headers, events, options) => {
     });
 }
 
-function http() {
-    let _endpoint = '',
-        _data = null,
-        _headers = [],
-        _events = {
-            onHeadersReceived: null,
-            onOpened: null,
-            onLoading: null,
-            onDone: null
-        };
-
+function http(_endpoint, _data, _headers, _events) {
     this.withEndpoint = endpoint => {
+        if (!isValidUrl(endpoint)) throw 'Url is not valid.';
+
         _endpoint = endpoint;
         return this;
     }
@@ -139,24 +133,40 @@ function http() {
     }
 
     this.post = (options) => {
+        if (!isValidUrl(_endpoint)) throw 'Url is not valid.';
+
         _headers.push({ key: 'Content-Type', value: 'application/json' });
 
         return send(_endpoint, 'POST', JSON.stringify(_data), _headers, _events, options);
     };
 
     this.get = (options) => {
+        if (!isValidUrl(_endpoint)) throw 'Url is not valid.';
+
         let endpoint = (_data ? `${_endpoint}/${_data}` : _endpoint).replace(/\/{2,}/g, '/');
 
         return send(endpoint, 'GET', null, _headers, _events, options)
     };
 
-    this.upload = (options) => send(_endpoint, 'POST', _data, _headers, _events, options);
+    this.upload = (options) => {
+        if (!isValidUrl(_endpoint)) throw 'Url is not valid.';
 
-    this.send = (method, options) => send(_endpoint, method, _data, _headers, _events, options);
+        return send(_endpoint, 'POST', _data, _headers, _events, options);
+    }
+
+    this.send = (method, options) => {
+        if (!isValidUrl(_endpoint)) throw 'Url is not valid.';
+
+        return send(_endpoint, method, _data, _headers, _events, options);
+    }
 
     return this;
 };
 
-export default new http();
+function req() {
+    this.init = () => new http('', null, [], { onHeadersReceived: null, onOpened: null, onLoading: null, onDone: null });
+}
+
+export default new req();
 
 export const METHOD = { GET: 'GET', POST: 'POST', PUT: 'PUT', DELETE: 'DELETE' };
